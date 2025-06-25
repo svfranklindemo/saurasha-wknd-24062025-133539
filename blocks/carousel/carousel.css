@@ -301,3 +301,8 @@
     bottom: 1rem;
   }
 }
+
+/*type-b*/
+.section.linenclub-carousel-type-b.carousel-container{
+  max-width: none;
+}

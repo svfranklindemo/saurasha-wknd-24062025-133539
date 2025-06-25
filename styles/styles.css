@@ -37,7 +37,7 @@
 
   /* Elsie base design */
   --color-brand-300: #F5E96D; 
-  --color-brand-500: #FFEA00;
+  --color-brand-500: #d2c2a5;
   --color-brand-600: #FFE600; 
   --color-brand-700: #F7D522; 
   --color-black-100: #000;
@@ -693,4 +693,60 @@ main .section.section-title .default-content-wrapper:first-of-type p::after {
 /* Hide minicart SKU */
 .dropin-design .dropin-cart-item__sku {
   display: none;
+}
+
+/*linenclub styles */
+
+/* H2 Heading Section with Left Accent Bar */
+.section.h2-heading {
+  padding: 3rem 15px 2rem;
+}
+
+.section.h2-heading .default-content-wrapper {
+  max-width: var(--large-grid-layout);
+  margin: 0 auto;
+  position: relative;
+  margin: 0 auto 60px;
+    padding: 0 40px;
+    width: 100%;
+    max-width: none;
+}
+
+.section.h2-heading h2 {
+  font: var(--type-display-2-font);
+  letter-spacing: var(--type-display-2-letter-spacing);
+  color: var(--color-black-200);
+  text-transform: uppercase;
+  margin: 0;
+  padding-left: 2rem;
+  position: relative;
+}
+
+.section.h2-heading h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  background-color: var(--color-brand-500);
+}
+
+.section.h2-heading h2::after {
+  display: none;
+}
+
+@media (width <= 768px) {
+  .section.h2-heading {
+    padding: 2rem 15px 1.5rem;
+  }
+  
+  .section.h2-heading h2 {
+    font-size: var(--heading-font-size-l);
+    padding-left: 1.5rem;
+  }
+  
+  .section.h2-heading h2::before {
+    width: 3px;
+  }
 }
