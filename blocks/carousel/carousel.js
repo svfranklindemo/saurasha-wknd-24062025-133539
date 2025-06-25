@@ -42,6 +42,58 @@ function showSlide(block, slideIndex = 0) {
   });
 }
 
+function startAutoPlay(block) {
+  const isLinenClubCarousel = block.closest('.section')?.classList.contains('linenclub-carousel-type-a');
+  if (!isLinenClubCarousel) return null;
+
+  return setInterval(() => {
+    const currentSlide = parseInt(block.dataset.activeSlide, 10);
+    const slides = block.querySelectorAll('.carousel-slide');
+    const nextSlide = (currentSlide + 1) % slides.length;
+    showSlide(block, nextSlide);
+  }, 5000);
+}
+
+function setupAutoPlayControls(block) {
+  const isLinenClubCarousel = block.closest('.section')?.classList.contains('linenclub-carousel-type-a');
+  if (!isLinenClubCarousel) return;
+
+  let autoPlayInterval = startAutoPlay(block);
+
+  // Pause on hover
+  block.addEventListener('mouseenter', () => {
+    if (autoPlayInterval) {
+      clearInterval(autoPlayInterval);
+      autoPlayInterval = null;
+    }
+  });
+
+  // Resume on mouse leave
+  block.addEventListener('mouseleave', () => {
+    if (!autoPlayInterval) {
+      autoPlayInterval = startAutoPlay(block);
+    }
+  });
+
+  // Pause on focus (for accessibility)
+  block.addEventListener('focusin', () => {
+    if (autoPlayInterval) {
+      clearInterval(autoPlayInterval);
+      autoPlayInterval = null;
+    }
+  });
+
+  // Resume when focus leaves
+  block.addEventListener('focusout', () => {
+    if (!autoPlayInterval) {
+      autoPlayInterval = startAutoPlay(block);
+    }
+  });
+
+  // Store interval reference for cleanup if needed
+  block.autoPlayInterval = autoPlayInterval;
+}
+
 function bindEvents(block) {
   const slideIndicators = block.querySelector('.carousel-slide-indicators');
   if (!slideIndicators) return;
@@ -83,8 +135,10 @@ function createSlide(row, slideIndex, carouselId) {
 
     if (!isImage) {
       const link = column.querySelector('.button-container > a');
-      link.classList.remove('button');
-      link.classList.add('button-primary');
+      if (link) {
+        link.classList.remove('button');
+        link.classList.add('button-primary');
+      }
     }
   });
 
@@ -153,5 +207,7 @@ export default async function decorate(block) {
 
   if (!isSingleSlide) {
     bindEvents(block);
+    // Setup auto-play for banner carousel
+    setupAutoPlayControls(block);
   }
 }

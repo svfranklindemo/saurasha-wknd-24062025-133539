@@ -199,3 +199,105 @@
     --slide-content-width: auto;
   }
 }
+
+/* linenclub-carousel-type-a */
+/*linen club styles*/
+.section.linenclub-carousel-type-a.carousel-container {
+  .carousel-wrapper{
+    max-width: none;
+  }
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.section.linenclub-carousel-type-a .carousel {
+  max-height: 450px;
+  overflow: hidden;
+  position: relative;
+}
+
+.section.linenclub-carousel-type-a .carousel-slides {
+  min-height: 450px;
+  max-height: 450px;
+}
+
+.section.linenclub-carousel-type-a .carousel-slide {
+  height: 450px;
+}
+
+.section.linenclub-carousel-type-a .carousel-slide-image {
+  width: 100%;
+  height: 100%;
+}
+
+.section.linenclub-carousel-type-a .carousel-slide-image picture > img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+.section.linenclub-carousel-type-a .carousel-slide-content {
+  display: none;
+}
+
+.section.linenclub-carousel-type-a .carousel-navigation-buttons {
+  left: 2rem;
+  right: 2rem;
+}
+
+.section.linenclub-carousel-type-a .carousel-navigation-buttons button {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  transition: background-color 0.3s ease;
+}
+
+.section.linenclub-carousel-type-a .carousel-navigation-buttons button:hover,
+.section.linenclub-carousel-type-a .carousel-navigation-buttons button:focus-visible {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.section.linenclub-carousel-type-a .carousel-navigation-buttons button::after {
+  border-color: #333;
+}
+
+.section.linenclub-carousel-type-a .carousel-slide-indicators {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+.section.linenclub-carousel-type-a .carousel-slide-indicator button {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.section.linenclub-carousel-type-a .carousel-slide-indicator button:disabled,
+.section.linenclub-carousel-type-a .carousel-slide-indicator button:hover,
+.section.linenclub-carousel-type-a .carousel-slide-indicator button:focus-visible {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+@media (width <= 768px) {
+  .section.linenclub-carousel-type-a .carousel-navigation-buttons {
+    left: 1rem;
+    right: 1rem;
+  }
+  
+  .section.linenclub-carousel-type-a .carousel-navigation-buttons button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .section.linenclub-carousel-type-a .carousel-slide-indicators {
+    bottom: 1rem;
+  }
+}
