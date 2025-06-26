@@ -780,6 +780,7 @@ function decorateBlock(block) {
     blockWrapper.classList.add(`${shortBlockName}-wrapper`);
     const section = block.closest('.section');
     if (section) section.classList.add(`${shortBlockName}-container`);
+    wrapImgsInLinks(block);
   }
 }
 
@@ -834,6 +835,17 @@ async function waitForLCP(lcpBlocks) {
       lcpCandidate.addEventListener('error', resolve);
     } else {
       resolve();
+    }
+  });
+}
+
+async function wrapImgsInLinks(container) {
+  const pictures = container.querySelectorAll('picture');
+  pictures.forEach((pic) => {
+    const link = pic.nextElementSibling;
+    if (link && link.tagName === 'A' && link.href) {
+      link.innerHTML = pic.outerHTML;
+      pic.replaceWith(link);
     }
   });
 }
