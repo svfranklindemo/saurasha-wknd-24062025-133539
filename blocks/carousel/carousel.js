@@ -34,28 +34,56 @@ function showSlide(block, slideIndex = 0) {
   if (slideIndex >= slides.length) realSlideIndex = 0;
   const activeSlide = slides[realSlideIndex];
 
-  activeSlide.querySelectorAll('a').forEach((link) => link.removeAttribute('tabindex'));
-  block.querySelector('.carousel-slides').scrollTo({
-    top: 0,
-    left: activeSlide.offsetLeft,
-    behavior: 'smooth',
-  });
+  const isTypeBCarousel = block.closest('.section')?.classList.contains('linenclub-carousel-type-b');
+  
+  if (isTypeBCarousel) {
+    // For type-b carousel, scroll by one tile width
+    const slideWidth = activeSlide.offsetWidth;
+    const gap = 20; // Default gap between slides
+    const scrollPosition = realSlideIndex * (slideWidth + gap);
+    
+    activeSlide.querySelectorAll('a').forEach((link) => link.removeAttribute('tabindex'));
+    block.querySelector('.carousel-slides').scrollTo({
+      top: 0,
+      left: scrollPosition,
+      behavior: 'smooth',
+    });
+  } else {
+    // Original behavior for type-a carousel
+    activeSlide.querySelectorAll('a').forEach((link) => link.removeAttribute('tabindex'));
+    block.querySelector('.carousel-slides').scrollTo({
+      top: 0,
+      left: activeSlide.offsetLeft,
+      behavior: 'smooth',
+    });
+  }
 }
 
 function startAutoPlay(block) {
-  const isLinenClubCarousel = block.closest('.section')?.classList.contains('linenclub-carousel-type-a');
+  const isLinenClubCarousel = block.closest('.section')?.classList.contains('linenclub-carousel-type-a') || 
+                              block.closest('.section')?.classList.contains('linenclub-carousel-type-b');
   if (!isLinenClubCarousel) return null;
 
   return setInterval(() => {
     const currentSlide = parseInt(block.dataset.activeSlide, 10);
     const slides = block.querySelectorAll('.carousel-slide');
-    const nextSlide = (currentSlide + 1) % slides.length;
-    showSlide(block, nextSlide);
+    const isTypeBCarousel = block.closest('.section')?.classList.contains('linenclub-carousel-type-b');
+    
+    if (isTypeBCarousel) {
+      // For type-b, calculate how many slides are visible and advance by 1
+      const nextSlide = (currentSlide + 1) % slides.length;
+      showSlide(block, nextSlide);
+    } else {
+      // For type-a, advance to next slide
+      const nextSlide = (currentSlide + 1) % slides.length;
+      showSlide(block, nextSlide);
+    }
   }, 5000);
 }
 
 function setupAutoPlayControls(block) {
-  const isLinenClubCarousel = block.closest('.section')?.classList.contains('linenclub-carousel-type-a');
+  const isLinenClubCarousel = block.closest('.section')?.classList.contains('linenclub-carousel-type-a') ||
+                              block.closest('.section')?.classList.contains('linenclub-carousel-type-b');
   if (!isLinenClubCarousel) return;
 
   let autoPlayInterval = startAutoPlay(block);

@@ -303,6 +303,191 @@
 }
 
 /*type-b*/
-.section.linenclub-carousel-type-b.carousel-container{
+.section.linenclub-carousel-type-b.carousel-container {
+  .carousel-wrapper{
+    max-width: none;
+  }
   max-width: none;
+  padding: 0 40px;
+}
+
+.section.linenclub-carousel-type-b .carousel {
+  position: relative;
+  overflow: hidden;
+}
+
+.section.linenclub-carousel-type-b .carousel-slides-container {
+  position: relative;
+}
+
+.section.linenclub-carousel-type-b .carousel-slides {
+  display: flex;
+  scroll-behavior: smooth;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  gap: 20px;
+  padding: 0 20px;
+  min-height: auto;
+}
+
+.section.linenclub-carousel-type-b .carousel-slides::-webkit-scrollbar {
+  display: none;
+}
+
+.section.linenclub-carousel-type-b .carousel-slide {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+  width: 310px;
+  max-width: 310px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 0;
+  position: relative;
+}
+
+.section.linenclub-carousel-type-b .carousel-slide-image {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.section.linenclub-carousel-type-b .carousel-slide-image picture {
+  width: 100%;
+  height: 270px;
+  max-height: 270px;
+  overflow: hidden;
+  display: block;
+}
+
+.section.linenclub-carousel-type-b .carousel-slide-image picture > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.section.linenclub-carousel-type-b .carousel-slide-image p:last-child {
+  margin: 0;
+  padding: 10px 0;
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+  color: var(--color-black-200);
+  text-align: left;
+  line-height: 1.4;
+}
+
+.section.linenclub-carousel-type-b .carousel-slide-content {
+  display: none;
+}
+
+.section.linenclub-carousel-type-b .carousel-navigation-buttons {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.section.linenclub-carousel-type-b .carousel-navigation-buttons button {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  transition: all 0.3s ease;
+  pointer-events: all;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.section.linenclub-carousel-type-b .carousel-navigation-buttons button:hover,
+.section.linenclub-carousel-type-b .carousel-navigation-buttons button:focus-visible {
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.section.linenclub-carousel-type-b .carousel-navigation-buttons button::after {
+  border-color: #333;
+  width: 8px;
+  height: 8px;
+  border-width: 2px;
+}
+
+.section.linenclub-carousel-type-b .carousel-slide-indicators {
+  display: none;
+}
+
+/* Responsive breakpoints for tiles */
+@media (width >= 1400px) {
+  .section.linenclub-carousel-type-b .carousel-slides {
+    gap: 24px;
+  }
+}
+
+@media (width <= 1200px) {
+  .section.linenclub-carousel-type-b .carousel-slide {
+    width: 280px;
+    max-width: 280px;
+  }
+  
+  .section.linenclub-carousel-type-b .carousel-slide-image picture {
+    height: 240px;
+    max-height: 240px;
+  }
+}
+
+@media (width <= 768px) {
+  .section.linenclub-carousel-type-b.carousel-container {
+    padding: 0 20px;
+  }
+  
+  .section.linenclub-carousel-type-b .carousel-slides {
+    gap: 15px;
+    padding: 0 10px;
+  }
+  
+  .section.linenclub-carousel-type-b .carousel-slide {
+    width: 250px;
+    max-width: 250px;
+  }
+  
+  .section.linenclub-carousel-type-b .carousel-slide-image picture {
+    height: 200px;
+    max-height: 200px;
+  }
+  
+  .section.linenclub-carousel-type-b .carousel-navigation-buttons button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .section.linenclub-carousel-type-b .carousel-navigation-buttons button::after {
+    width: 6px;
+    height: 6px;
+  }
+}
+
+@media (width <= 480px) {
+  .section.linenclub-carousel-type-b .carousel-slide {
+    width: 200px;
+    max-width: 200px;
+  }
+  
+  .section.linenclub-carousel-type-b .carousel-slide-image picture {
+    height: 160px;
+    max-height: 160px;
+  }
+  
+  .section.linenclub-carousel-type-b .carousel-slides {
+    gap: 12px;
+  }
 }

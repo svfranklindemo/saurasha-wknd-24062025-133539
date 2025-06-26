@@ -482,7 +482,14 @@ main .section {
 
 @media (width >=1024px) {
   .section > div {
-    max-width: 1200px;
+    max-width: none;
+    margin: auto;
+  }
+}
+
+@media (width >=1920px) {
+  .section > div {
+    max-width: 1920px;
     margin: auto;
   }
 }
@@ -707,7 +714,6 @@ main .section.section-title .default-content-wrapper:first-of-type p::after {
   margin: 0 auto;
   position: relative;
   margin: 0 auto 60px;
-    padding: 0 40px;
     width: 100%;
     max-width: none;
 }
@@ -748,5 +754,13 @@ main .section.section-title .default-content-wrapper:first-of-type p::after {
   
   .section.h2-heading h2::before {
     width: 3px;
+  }
+}
+
+.section.secondary-bg.h2-heading.columns-container {
+  background-color: #3f6b76;
+
+  a,h1,h2,h3,h4,h5,h6,p{
+    color: #fff;
   }
 }
